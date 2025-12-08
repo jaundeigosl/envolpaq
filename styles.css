@@ -1,0 +1,352 @@
+/* =========================================
+   1. VARIABLES Y RESET BÁSICO
+   ========================================= */
+:root {
+    /* Colores basados en el esquema de la plantilla (primary, accent, background, secondary) */
+    --color-primary: #690809; /* Azul oscuro para header/fondo */
+    --color-primary-foreground: #ffffff; /* Texto sobre primary */
+    --color-secondary: #CBCAC7; /* Gris claro para secciones alternas */
+    --color-background: #ffffff; /* Fondo principal */
+    --color-card: #ffffff; /* Fondo de tarjetas */
+    --color-muted-foreground: black; /* Texto secundario/descripciones */
+    --color-accent: #252523; /* Naranja/Amarillo para botones y énfasis */
+    --color-accent-foreground: white; /* Texto sobre accent */
+    --color-border: #e5e7eb;
+    
+    /* Fuentes */
+    --font-body: 'Inter', sans-serif;
+    --font-headline: 'Space Grotesk', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    color: #690809; /* Color de texto oscuro por defecto */
+    background-color: var(--color-background);
+    line-height: 1.6;
+}
+
+h1{
+    margin: 20px 0;
+    font-size: 3.5em !important;
+}
+
+h2{
+    margin: 20px 0;
+    font-size: 2.5em !important;
+}
+
+h3{
+    font-size: 2em;
+}
+
+h4{
+      font-size: 1.3em;
+      text-align: center;
+}
+
+body p{
+    text-align: justify;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* =========================================
+   2. UTILIDADES DE MAQUETACIÓN (GRID, FLEX, CONTAINER)
+   ========================================= */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.space-x-2 > * + * { margin-left: 0.5rem; }
+.space-x-6 > * + * { margin-left: 1.5rem; }
+.space-y-6 > * + * { margin-top: 1.5rem; }
+.space-y-4 > * + * { margin-top: 1rem; }
+
+/* Contenedor central (simula la clase .container de la plantilla) */
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 1200px; 
+}
+.max-w-3xl { max-width: 48rem; }
+.max-w-4xl { max-width: 56rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.text-center { text-align: center; }
+
+/* Grid de 3 columnas para secciones de servicios y valores */
+.grid { display: grid; }
+.gap-8 { gap: 2rem; }
+.md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lg\:col-span-1 { grid-column: span 1 / span 1; }
+
+/* Ocultar elementos en versión móvil (simula md:hidden, hidden) */
+.hidden { display: none; }
+@media (min-width: 768px) { /* md */
+    .md\:flex { display: flex; }
+    .md\:inline-flex { display: inline-flex; }
+    .md\:block { display: block; }
+}
+
+/* =========================================
+   3. TIPOGRAFÍA
+   ========================================= */
+.font-headline { font-family: var(--font-headline); }
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+.text-6xl { font-size: 3.75rem; line-height: 1; }
+.text-lg { font-size: 1.3rem; line-height: 1.75rem; }
+.font-bold { font-weight: 700; }
+.text-muted-foreground { color: var(--color-muted-foreground); }
+.text-primary-foreground { color: var(--color-primary-foreground); }
+.text-accent { color: var(--color-accent); }
+.text-primary { color: var(--color-primary); }
+
+@media (min-width: 640px) { /* sm */
+    .sm\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+}
+
+/* =========================================
+   4. COMPONENTES PRINCIPALES
+   ========================================= */
+
+/* --- Header / Navegación --- */
+header {
+    background-color: var(--color-primary);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+header .h-14 { height: 5.5rem; }
+
+.header-container{
+    gap:120px;
+}
+
+header nav a {
+    color: var(--color-primary);
+    transition: color 0.15s;
+    font-weight: 800;
+    transition: 0.3s ease-in;
+}
+header nav a:hover {
+    border-radius: 2em;
+    border: 2px solid var(--color-primary);
+    padding: 0 4px;
+    transition: 0.3s ease-in-out;
+}
+
+#logo{
+    width: 100px;
+    height: auto;
+}
+
+/* --- Botones --- */
+.inline-flex { display: inline-flex; }
+.rounded-md { border-radius: 0.375rem; }
+.h-10 { height: 2.5rem; }
+.h-11 { height: 2.75rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+
+.bg-accent { 
+    background-color: var(--color-accent); color: var(--color-accent-foreground); 
+    transition: 0.3s ease;
+    color:var(--color-secondary);
+}
+.hover\:bg-accent\/90:hover { 
+    transition: 0.3s ease;
+    color:white;
+    font-weight: 400;
+    background-color: #3b3b39;
+}
+.bg-primary { background-color: var(--color-primary); color: var(--color-primary-foreground); }
+.hover\:bg-primary\/90:hover { background-color: rgba(30, 58, 138, 0.9); }
+
+.border { border: 1px solid var(--color-border); }
+
+/* --- Secciones --- */
+.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+.md\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+
+.bg-background { background-color: var(--color-background); }
+.bg-secondary { background-color: var(--color-secondary); }
+
+/* --- Tarjetas (Misión, Visión, Servicios) --- */
+.rounded-lg { border-radius: 0.5rem; }
+.border { border: 1px solid var(--color-border); }
+.shadow-sm { box-shadow: 0 5px 10px var(--color-primary); }
+.bg-card { background-color: var(--color-card); }
+.text-card-foreground { color: #1f2937; }
+.p-6 { padding: 1.5rem; }
+.pt-0 { padding-top: 0; }
+.mt-12 { margin-top: 3rem; }
+
+.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+.hover\:scale-105:hover { transform: scale(1.05); }
+.hover\:shadow-xl:hover { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+
+/* Íconos dentro de tarjetas de servicio */
+.bg-primary { background-color: white; }
+.p-3 { padding: 0.5rem; }
+
+/* --- Hero --- */
+.relative { position: relative; }
+.h-\[60vh\] { height: 60vh; }
+.min-h-\[400px\] { min-height: 400px; }
+.object-cover { object-fit: cover; }
+.absolute { position: absolute; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.bg-primary\/70 { background-color: rgba(30, 58, 138, 0.7); }
+
+/* Degradado oscuro en hero (para legibilidad del texto) */
+.bg-gradient-to-t {
+    background-image:url("imagenes/hero.png");
+    background-size: cover; 
+    
+    /* 3. Opcional, pero recomendado: Centrar la imagen y evitar la repetición */
+    background-position: center;
+}
+.from-primary\/90 { 
+    --tw-gradient-from: rgba(30, 58, 138, 0.9);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(30, 58, 138, 0));
+}
+.to-transparent { 
+    --tw-gradient-to: transparent;
+}
+.relative.z-10 { z-index: 10; }
+.drop-shadow-lg { filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1)); }
+
+
+/* --- Contacto / Formulario --- */
+.input, textarea {
+    display: flex;
+    height: 2.5rem;
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background);
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #1f2937;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+textarea {
+    min-height: 5rem;
+    height: auto;
+}
+
+.input:focus-visible, textarea:focus-visible {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.hero-buttons{
+    gap:30px;
+    margin: 30px 0;
+}
+
+.valores{
+    gap:10px;
+}
+
+.valores span{
+    font-size: 1.3em;
+}
+
+.valores svg
+{
+    color:var(--color-primary);
+    flex-shrink: 0
+}
+
+.introduction{
+    font-size: 1.5em  !important;
+}
+
+
+
+.hero-titulo .hero-subtitulo{
+    color: #690809;
+}
+
+.hero-subtitulo{
+
+}
+
+/* =========================================
+   6. AJUSTES RESPONSIVOS PARA ESCRITORIO (LG)
+   ========================================= */
+
+@media (min-width: 1024px) { /* lg - Pantallas grandes */
+    .lg\:grid-cols-2 { 
+        /* Aplica la cuadrícula de dos columnas */
+        grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    }
+}
+
+.grid { 
+    display: grid;
+}
+
+.gap-12 {
+    gap: 3rem;
+}
+
+.formulario{
+    font-size: 1.2em;
+}
+
+.formulario input{
+    width: 70%;
+}
+
+.info-item{
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap:20px;
+}
+
+.info-section-container{
+    flex-wrap: wrap;
+}
+
+.info-section-container a {
+    margin-left: 85px;
+}
+
+footer{
+    padding: 20px;
+}
+
+footer p{
+    color:black;
+    margin: 10px;
+}
+
+.social-icons{
+    gap:30px;
+}
+
