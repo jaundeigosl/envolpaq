@@ -281,6 +281,11 @@ textarea {
     flex-shrink: 0
 }
 
+.valores p{
+    font-size:1.3em;
+}
+
+
 .introduction{
     font-size: 1.5em  !important;
 }
