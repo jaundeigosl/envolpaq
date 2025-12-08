@@ -26,7 +26,7 @@
 
 body {
     font-family: var(--font-body);
-    color: #690809; /* Color de texto oscuro por defecto */
+    color: white; /* Color de texto oscuro por defecto */
     background-color: var(--color-background);
     line-height: 1.6;
 }
@@ -188,7 +188,7 @@ header nav a:hover {
 .md\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
 
 .bg-background { 
-    background-color:#d68b8f;
+    background-color:var(--color-primary);
 }
 .bg-secondary { background-color: var(--color-secondary); }
 
