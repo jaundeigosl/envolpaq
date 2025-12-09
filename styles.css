@@ -14,7 +14,7 @@
     --color-border: #e5e7eb;
     
     /* Fuentes */
-    --font-body: 'Inter', sans-serif;
+    --font-body: sans-serif;
     --font-headline: 'Space Grotesk', sans-serif;
 }
 
@@ -190,14 +190,14 @@ header nav a:hover {
 .bg-background { 
     background-color:var(--color-primary);
 }
-.bg-secondary { background-color: var(--color-secondary); }
+.bg-secondary { background-color: var(--color-primary); }
 
 /* --- Tarjetas (Misión, Visión, Servicios) --- */
 .rounded-lg { border-radius: 0.5rem; }
 .border { border: 1px solid var(--color-border); }
-.shadow-sm { box-shadow: 0 5px 10px var(--color-primary); }
-.bg-card { background-color: var(--color-card); }
-.text-card-foreground { color: #1f2937; }
+.shadow-sm { box-shadow: 0 5px 20px var(--color-primary); }
+.bg-card { background-color: #E07726; }
+.text-card-foreground { color: white; }
 .p-6 { padding: 1.5rem; }
 .pt-0 { padding-top: 0; }
 .mt-12 { margin-top: 3rem; }
@@ -279,7 +279,7 @@ textarea {
 
 .valores svg
 {
-    color:var(--color-primary);
+    color:white;
     flex-shrink: 0
 }
 
@@ -294,12 +294,15 @@ textarea {
 
 
 
-.hero-titulo .hero-subtitulo{
-    color: #690809;
+.hero-titulo , .hero-subtitulo{
+    color: white;
+    -webkit-text-stroke: 1px black;
+    paint-order: stroke fill;
 }
 
 .hero-subtitulo{
-
+    font-weight: 600;
+    font-size: 2em;
 }
 
 /* =========================================
@@ -327,6 +330,11 @@ textarea {
 
 .formulario input{
     width: 70%;
+    color: white;
+}
+
+.formulario textarea{
+    color: white;
 }
 
 .info-item{
@@ -334,6 +342,18 @@ textarea {
     flex-shrink: 0;
     align-items: center;
     gap:20px;
+}
+
+.info-item svg{
+    color:white
+}
+
+#contact p{
+    color:white;
+}
+
+#contact a{
+    color:white;
 }
 
 .info-section-container{
@@ -355,4 +375,82 @@ footer p{
 
 .social-icons{
     gap:30px;
+}
+
+#about{
+    background: url("imagenes/fondo.jpg");
+}
+
+.icons-cards{
+    background-color: #690809;
+}
+
+.first-text{
+    margin-top: 150px;
+}
+
+.second-text{
+    color:black;
+}
+
+#whyus{
+    background-color: #a8a7a4;
+}
+
+/* =========================================
+   7. AJUSTES ESPECÍFICOS PARA MÓVIL (Menos de 768px)
+   ========================================= */
+@media (max-width: 767px) {
+    
+    /* Ajuste del Hero para que la imagen no corte caras o productos importantes */
+    section.h-\[60vh\] {
+        height: auto;
+        min-height: 60vh; /* Ocupar casi toda la pantalla en móvil */
+        padding-top: 80px; /* Espacio para el header fijo */
+        padding-bottom: 40px;
+    }
+
+    /* Forzar colapso de grids y flex que no tengan la clase específica */
+    .grid {
+        grid-template-columns: 1fr !important; /* Una sola columna */
+    }
+
+    /* Ajuste de padding en secciones */
+    .py-16 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    /* Formulario ocupa todo el ancho */
+    .formulario input {
+        width: 100%;
+    }
+
+    /* Alinear iconos de contacto y texto */
+    .info-item {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    /* Footer en columna */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    /* Reducir tamaño del logo en móvil si es necesario */
+    #logo {
+        width: 80px;
+    }
+    
+    /* Asegurar que los botones del hero no se salgan */
+    .hero-buttons a {
+        width: 100%; /* Botones full width en móvil se ven mejor y son más fáciles de tocar */
+        padding: 0 10px;
+    }
 }
