@@ -274,7 +274,7 @@ textarea {
 }
 
 .valores span{
-    font-size: 1.3em;
+    font-size: 1.2em;
 }
 
 .valores svg
@@ -284,7 +284,7 @@ textarea {
 }
 
 .valores p{
-    font-size:1.3em;
+    font-size:1.2em;
 }
 
 
@@ -395,6 +395,10 @@ footer p{
 
 #whyus{
     background-color: #a8a7a4;
+}
+
+#services p{
+    font-size: 1.2em;
 }
 
 /* =========================================
