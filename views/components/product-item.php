@@ -1,40 +1,24 @@
 <?php
-$prodImg = !empty($producto['image_url']) 
-    ? $producto['image_url'] 
-    : 'public/imagenes/placeholder.png'; 
+// product-item.php - Row Style for Unified List
 ?>
 
-<div class="bg-card rounded-lg shadow-sm hover:shadow-md transition-all flex flex-col h-full overflow-hidden border border-gray-200">
-    
-    <div class="h-56 overflow-hidden relative bg-gray-100 group">
-        <img 
-            src="<?php echo BASE_URL . $prodImg; ?>" 
-            alt="<?php echo $producto['name']; ?>" 
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            loading="lazy"
-            onerror="this.onerror=null;this.src='<?php echo BASE_URL; ?>public/imagenes/placeholder.png';"
-        >
-    </div>
-    
-    <div class="p-5 flex flex-col flex-grow">
-        <h3 class="font-bold text-lg mb-2 text-center text-gray-800 leading-tight">
+<details class="group bg-white transition-colors hover:bg-gray-50/80">
+    <summary class="flex items-center justify-between p-5 cursor-pointer select-none">
+        <h3 class="font-bold text-lg text-primary flex-1 pr-4 uppercase tracking-wide">
             <?php echo $producto['name']; ?>
         </h3>
-        
-        <p class="text-sm text-gray-600 text-center mb-4 flex-grow line-clamp-3">
+        <div class="transform transition-transform duration-300 group-open:rotate-180 text-muted-foreground/70">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </summary>
+
+    <div class="px-5 pb-5 pt-0">
+        <div class="h-px w-full bg-border/40 mb-3"></div>
+        <p class="text-sm text-muted-foreground leading-relaxed">
             <?php echo $producto['description']; ?>
         </p>
-
-        <a 
-            href="https://wa.me/4448143689?text=Hola,%20me%20interesa%20cotizar:%20<?php echo urlencode($producto['name']); ?>" 
-            target="_blank"
-            class="mt-auto flex items-center justify-center w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors gap-2"
-            style="background-color: #25D366; /* Color oficial WhatsApp */ color: white;"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
-            </svg>
-            Cotizar
-        </a>
     </div>
-</div>
+</details>

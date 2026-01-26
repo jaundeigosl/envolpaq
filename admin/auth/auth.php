@@ -1,42 +1,34 @@
 <?php
 
-require_once __DIR__ . "../db/connection.php";
-
-header('Content-Type: application/json');
+require_once __DIR__ . "/../../db/connection.php";
+require_once __DIR__ . "/../../config.php";
 
 session_start();
 
-$input = file_get_contents('php://input');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['username'];
+    $password = $_POST['password'];
 
-$data = json_decode($input, true);
+    if (empty($name) || empty($password)) {
+        header("Location: ../login.php?error=empty_fields");
+        exit;
+    }
 
-$name = $data['name'];
-$password = $data['password'];
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE name = :name LIMIT 1");
+    $stmt->execute([':name' => $name]);
+    $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (empty($name) || empty($password)) {
-    echo json_encode(['success' => false, 'message' => 'Faltan datos']);
+    if ($userRow && password_verify($password, $userRow['password'])) {
+        $_SESSION['user_id'] = $userRow['id'];
+        $_SESSION['user_name'] = $userRow['name'];
+        header("Location: ../dashboard.php");
+        exit;
+    } else {
+        header("Location: ../login.php?error=invalid_credentials");
+        exit;
+    }
+} else {
+    header("Location: ../login.php");
     exit;
 }
-
-$stmt = $pdo->prepare("SELECT * FROM users WHERE name = :name LIMIT 1");
-$stmt->execute([':name' => $name]);
-$userRow = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if ($userRow && password_verify($password, $userRow['password'])) {
-    
-    $_SESSION['user_id'] = $userRow['id'];
-    $_SESSION['user_name'] = $userRow['name'];
-
-    echo json_encode([
-        'success' => true, 
-        'message' => 'Login correcto',
-        'user' => [
-            'id' => $userRow['id'],
-            'name' => $userRow['name']
-        ]
-    ]);
-
-} else {
-
-    echo json_encode(['success' => false, 'message' => 'Credenciales incorrectas']);
-}
+?>

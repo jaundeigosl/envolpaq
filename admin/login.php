@@ -1,22 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-     <style>
+    <style>
         /* TUS VARIABLES DE COLOR */
         :root {
-            --color-primary: #690809;            /* Rojo vino / Primary */
-            --color-primary-foreground: #ffffff; 
-            --color-secondary: #CBCAC7;          /* Gris claro fondo página */
-            --color-background: #ffffff;         
-            --color-card: #ffffff;               
-            --color-muted-foreground: black;     
-            --color-accent: #252523;             /* Gris muy oscuro (casi negro) para botones */
-            --color-accent-foreground: white;    
-            --color-border: #e5e7eb;             
+            --color-primary: #690809;
+            /* Rojo vino / Primary */
+            --color-primary-foreground: #ffffff;
+            --color-secondary: #CBCAC7;
+            /* Gris claro fondo página */
+            --color-background: #ffffff;
+            --color-card: #ffffff;
+            --color-muted-foreground: black;
+            --color-accent: #252523;
+            /* Gris muy oscuro (casi negro) para botones */
+            --color-accent-foreground: white;
+            --color-border: #e5e7eb;
         }
 
         /* RESET BÁSICO */
@@ -29,7 +32,8 @@
 
         /* CUERPO: Centrado perfecto con Flexbox */
         body {
-            background-color: var(--color-secondary); /* Usamos el secundario para contraste */
+            background-color: var(--color-secondary);
+            /* Usamos el secundario para contraste */
             height: 100vh;
             display: flex;
             align-items: center;
@@ -40,10 +44,12 @@
         .login-card {
             background-color: var(--color-card);
             width: 100%;
-            max-width: 400px; /* Ancho máximo elegante */
+            max-width: 400px;
+            /* Ancho máximo elegante */
             padding: 2.5rem;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra suave */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            /* Sombra suave */
             border: 1px solid var(--color-border);
         }
 
@@ -60,11 +66,12 @@
         }
 
         .login-header p {
-            color: #666; /* Un gris suave para el subtítulo */
+            color: #666;
+            /* Un gris suave para el subtítulo */
             font-size: 0.9rem;
         }
 
-        .login-header img{
+        .login-header img {
             width: 250px;
             height: 250px;
         }
@@ -96,14 +103,16 @@
         /* EFECTO FOCUS: Se ilumina con el color primario */
         .input-group input:focus {
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(105, 8, 9, 0.1); /* Sombra roja sutil */
+            box-shadow: 0 0 0 3px rgba(105, 8, 9, 0.1);
+            /* Sombra roja sutil */
         }
 
         /* BOTÓN */
         .btn-login {
             width: 100%;
             padding: 0.85rem;
-            background-color: var(--color-accent); /* Usando el accent para el botón */
+            background-color: var(--color-accent);
+            /* Usando el accent para el botón */
             color: var(--color-accent-foreground);
             border: none;
             border-radius: 6px;
@@ -118,7 +127,8 @@
         }
 
         .btn-login:active {
-            transform: scale(0.98); /* Pequeño efecto de click */
+            transform: scale(0.98);
+            /* Pequeño efecto de click */
         }
 
         /* LINKS ADICIONALES */
@@ -146,12 +156,13 @@
             color: #666;
             text-decoration: none;
         }
-        
+
         .forgot-pass:hover {
             color: var(--color-primary);
         }
     </style>
 </head>
+
 <body>
 
     <div class="login-card">
@@ -159,12 +170,23 @@
             <img src="../public/imagenes/envolpaq_logo.png" alt="Logo Evolpaq">
             <h2>Bienvenido</h2>
             <p>Ingresa tus credenciales para continuar</p>
+
+            <?php if (isset($_GET['error'])): ?>
+                <div style="color: red; margin-top: 10px; font-weight: bold;">
+                    <?php
+                    if ($_GET['error'] == 'invalid_credentials')
+                        echo "Usuario o contraseña incorrectos.";
+                    if ($_GET['error'] == 'empty_fields')
+                        echo "Por favor llena todos los campos.";
+                    ?>
+                </div>
+            <?php endif; ?>
         </div>
 
-        <form action="#" method="POST">
+        <form action="auth/auth.php" method="POST">
             <div class="input-group">
-                <label for="email">Correo Electrónico</label>
-                <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                <label for="username">Usuario</label>
+                <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
             </div>
 
             <div class="input-group">
@@ -178,4 +200,5 @@
     </div>
 
 </body>
+
 </html>

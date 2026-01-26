@@ -1,0 +1,149 @@
+/* =========================================
+   ESTILOS ESPECÍFICOS PARA PRODUCTOS (UNIFIED LIST VIEW)
+   ========================================= */
+
+/* --- 1. Header de Categoría --- */
+.bg-secondary\/30 {
+    background-color: #f4f4f5;
+    border-bottom: 1px solid #e4e4e7;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.text-primary {
+    color: #18181b;
+}
+
+/* KEEPING ORIGINAL FONTS AS REQUESTED - No font-family overrides here if they exist in global styles */
+/* Just weight adjustments for hierarchy */
+
+.font-headline {
+    /* Assuming global style handles the font family */
+    letter-spacing: -0.02em;
+}
+
+.text-muted-foreground {
+    color: #52525b;
+    line-height: 1.6;
+}
+
+/* --- 2. Unified Container Styling --- */
+
+/* The main container wrapper */
+.bg-white {
+    background-color: #ffffff;
+}
+
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.border {
+    border: 1px solid #e4e4e7;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* Dividers between rows */
+.divide-y>*+* {
+    border-top: 1px solid #eaebed;
+    /* Very light divider */
+}
+
+/* --- 3. Product Row Styling --- */
+
+
+details>summary {
+    list-style: none;
+    outline: none;
+}
+
+details>summary::-webkit-details-marker {
+    display: none;
+}
+
+.hover\:bg-gray-50\/80:hover {
+    background-color: #f19650;
+}
+
+/* Typography */
+.font-bold {
+    font-weight: 700;
+    font-size: 1rem;
+    /* Slightly smaller for list view elegance */
+    color: #18181b;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.tracking-wide {
+    letter-spacing: 0.025em;
+}
+
+.text-muted-foreground {
+    color: black;
+}
+
+.text-muted-foreground\/70 {
+    color:black;
+}
+
+.text-sm {
+    font-size: 0.95rem;
+}
+
+/* Internal separator line */
+.bg-border\/40 {
+    background-color: rgba(228, 228, 231, 0.4);
+}
+
+.h-px {
+    height: 1px;
+}
+
+/* Emtpy State */
+.py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* Added by User */
+#container-table {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+details{
+    padding: 1rem;
+}
+
+footer {
+    height: 350px;
+    display: flex;
+    align-items: center;
+}
+
+/* --- 4. Animation --- */
+details[open]>div {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
