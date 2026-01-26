@@ -1,3 +1,7 @@
+<?php
+    require_once __DIR__."/config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,15 +19,16 @@
     <div class="flex flex-col min-h-screen">
         <header class="sticky top-0 z-50 w-full border-b border-primary/20 bg-primary text-primary-foreground">
             <div class="container header-container flex h-14 items-center">
-                <a class="mr-6 flex items-center space-x-2" href="/">
-                    <img id="logo" alt="Logo Envolpaq" loading="lazy" decoding="async" data-nimg="1" src="imagenes/envolpaq_logo.png"/>
+                <a class="mr-6 flex items-center space-x-2" href="<?php echo BASE_URL?>index.php">
+                    <img id="logo" alt="Logo Envolpaq" loading="lazy" decoding="async" data-nimg="1" src="<?php echo BASE_URL?>public/imagenes/envolpaq_logo.png"/>
                 </a>
                 <nav class="hidden flex-1 items-center space-x-6 text-sm font-medium md:flex">
+                    <a class="text-primary-foreground/80 transition-colors hover:text-primary-foreground" href="<?php echo BASE_URL?>index.php">Inicio</a>
                     <a class="text-primary-foreground/80 transition-colors hover:text-primary-foreground" href="#about">Quiénes Somos</a>
                     <a class="text-primary-foreground/80 transition-colors hover:text-primary-foreground" href="#services">Servicios</a>
                     <a class="text-primary-foreground/80 transition-colors hover:text-primary-foreground" href="#whyus">Por Qué Elegirnos</a>
                     <a class="text-primary-foreground/80 transition-colors hover:text-primary-foreground" href="#contact">Contacto</a>
-                    <a class="text-primary-foreground/80 transition-colors hover:text-primary-foreground" href="#about">Catalago</a>
+                    <a class="text-primary-foreground/80 transition-colors hover:text-primary-foreground" href="<?php echo BASE_URL?>controllers/controller_category.php">Catalago</a>
                 </nav>
                 <div class="flex flex-1 items-center justify-end space-x-2">
                     <a class="items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 px-4 py-2 hidden md:inline-flex bg-accent hover:bg-accent/90 text-accent-foreground" href="#contact">Solicitar Asesoría</a>
@@ -33,7 +38,7 @@
 
         <main class="flex-1">
             <section class="relative h-[60vh] min-h-[400px] w-full flex items-center justify-center text-primary-foreground">
-                <img alt="Materiales de embalaje y empaque profesional" data-ai-hint="packaging materials" decoding="async" data-nimg="fill" class="object-cover" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent" sizes="100vw" srcSet="/_next/image?url=%2Fheroimg.webp&amp;w=640&amp;q=75 640w, /_next/image?url=%2Fheroimg.webp&amp;w=750&amp;q=75 750w, /_next/image?url=%2Fheroimg.webp&amp;w=828&amp;q=75 828w, /_next/image?url=%2Fheroimg.webp&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2Fheroimg.webp&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2Fheroimg.webp&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2Fheroimg.webp&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2Fheroimg.webp&amp;w=3840&amp;q=75 3840w" src="/_next/image?url=%2Fheroimg.webp&amp;w=3840&amp;q=75"/>
+                <img alt="Materiales de embalaje y empaque profesional" data-ai-hint="packaging materials" decoding="async" data-nimg="fill" class="object-cover" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent" sizes="100vw" srcSet="/_next/image?url=%2Fheroimg.webp&amp;w=640&amp;q=75 640w, /_next/image?url=%2Fheroimg.webp&amp;w=750&amp;q=75 750w, /_next/image?url=%2Fheroimg.webp&amp;w=828&amp;q=75 828w, /_next/image?url=%2Fheroimg.webp&amp;w=1080&amp;q=75 1080w, /_next/image?url=%2Fheroimg.webp&amp;w=1200&amp;q=75 1200w, /_next/image?url=%2Fheroimg.webp&amp;w=1920&amp;q=75 1920w, /_next/image?url=%2Fheroimg.webp&amp;w=2048&amp;q=75 2048w, /_next/image?url=%2Fheroimg.webp&amp;w=3840&amp;q=75 3840w" src="public/image?url=%2Fheroimg.webp&amp;w=3840&amp;q=75"/>
                 <div class="absolute inset-0 bg-primary/70 bg-gradient-to-t from-primary/90 to-transparent"></div>
                 <div class="first-text relative z-10 text-center px-4">
                     <h1 class="hero-titulo font-headline text-4xl md:text-6xl font-bold tracking-tighter drop-shadow-lg">ENVOLPAQ</h1>
@@ -228,16 +233,16 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin h-6 w-6 text-primary mt-1"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
                                         <h3 class="font-semibold">Dirección</h3>
                                     </div>
-                                    <p class="text-muted-foreground">Damián Carmona 1516, Col. Barrio de Santiago, San Luis Potosí, SLP, CP 79049.</p>
+                                    <p class="text-muted-foreground">Damián Carmona 1516, Col. Barrio de Santiago, San Luis Potosí, SLP, CP 78049.</p>
                                 </div>
 
                                 <div class="items-start gap-4">
                                     <div class="info-item">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone h-6 w-6 text-primary mt-1"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                        <h3 class="font-semibold">Llamada y WhatsApp</h3>
+                                        <h3 class="font-semibold">Teléfono</h3>
                                     </div>
                                     <a href="tel:4448143689" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 underline-offset-4 hover:underline p-0 h-auto text-base text-muted-foreground">444 814 3689</a>
-                                    <a href="https://wa.me/5214448143689" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 underline-offset-4 hover:underline p-0 h-auto text-base text-muted-foreground">Enviar mensaje por WhatsApp</a>
+                                    <a href="https://wa.me/5214448143689" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 underline-offset-4 hover:underline p-0 h-auto text-base text-muted-foreground">Llama o envia mensajes</a>
                                 </div>
 
                                 <div class="items-start gap-4">
@@ -278,31 +283,34 @@
         </main>
 
         <footer class="bg-primary text-primary-foreground">
-    <div class="container py-8">
-        <div class="footer-content flex flex-col md:flex-row items-center justify-between gap-6">
-            
-            <a class="flex items-center space-x-2" href="/">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-box h-6 w-6"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg>
-                <span class="font-bold font-headline text-lg">Envolpaq</span>
-            </a>
-            
-            <p class="footer-copyright text-sm">© 2025 Envolpaq. Todos los derechos reservados.</p>
-            
-            <div class="social-icons flex items-center gap-2">
-                <a href="https://facebook.com/envolpaq" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook h-5 w-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                </a>
-                
-                <a href="https://wa.me/4448143689" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer-social-link">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"></path></svg>                </a>
+            <div class="container py-8">
+                <div class="footer-content flex flex-col md:flex-row items-center justify-between gap-6">
+                    
+                    <a class="flex items-center space-x-2" href="/">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-box h-6 w-6"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg>
+                        <span class="font-bold font-headline text-lg">Envolpaq</span>
+                    </a>
+                    
+                    <p class="footer-copyright text-sm">© 2025 Envolpaq. Todos los derechos reservados.</p>
+                    
+                    <div class="social-icons flex items-center gap-2">
+                        <a href="https://facebook.com/envolpaq" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook h-5 w-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        
+                        <a href="tel:4448143689" aria-label="Llamar por teléfono" class="footer-social-link">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" stroke-miterlimit="10" stroke-width="32" d="M451 374c-15.88-16-54.34-39.35-73-48.76-24.3-12.24-26.3-13.24-45.4.95-12.74 9.47-21.21 17.93-36.12 14.75s-47.31-21.11-75.68-49.39-47.34-61.62-50.53-76.48 5.41-23.23 14.79-36c13.22-18 12.22-21 .92-45.3-8.81-18.9-32.84-57-48.9-72.8C119.9 44 119.9 47 108.83 51.6A160.15 160.15 0 0 0 83 65.37C67 76 58.12 84.83 51.91 98.1s-9 44.38 23.07 102.64 54.57 88.05 101.14 134.49S258.5 406.64 310.85 436c64.76 36.27 89.6 29.2 102.91 23s22.18-15 32.83-31a159.09 159.09 0 0 0 13.8-25.8C465 391.17 468 391.17 451 374z"></path>
+                            </svg>
+                        </a>
 
-                <a href="" target="_blank" class="footer-social-link">
-                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"></path></svg>
-                </a>
+                        <a href="" target="_blank" class="footer-social-link">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"></path></svg>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</footer>
+        </footer>
     </div>
 </body>
 </html>
