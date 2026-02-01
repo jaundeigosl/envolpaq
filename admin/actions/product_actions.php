@@ -12,14 +12,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $name = $_POST['name'];
             $description = $_POST['description'];
             $category_id = $_POST['category_id'];
+            $subcategory_id = !empty($_POST['subcategory_id']) ? $_POST['subcategory_id'] : null;
 
             if (empty($name) || empty($category_id)) {
                 header("Location: ../dashboard.php?error=empty_fields_product");
                 exit;
             }
 
-            $stmt = $pdo->prepare("INSERT INTO products (name, description, category_id) VALUES (:name, :description, :category_id)");
-            $stmt->execute([':name' => $name, ':description' => $description, ':category_id' => $category_id]);
+            $stmt = $pdo->prepare("INSERT INTO products (name, description, category_id, subcategory_id) VALUES (:name, :description, :category_id, :subcategory_id)");
+            $stmt->execute([':name' => $name, ':description' => $description, ':category_id' => $category_id, ':subcategory_id' => $subcategory_id]);
             header("Location: ../dashboard.php?success=product_created");
 
         } elseif ($action == 'update') {
@@ -27,9 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $name = $_POST['name'];
             $description = $_POST['description'];
             $category_id = $_POST['category_id'];
+            $subcategory_id = !empty($_POST['subcategory_id']) ? $_POST['subcategory_id'] : null;
 
-            $stmt = $pdo->prepare("UPDATE products SET name = :name, description = :description, category_id = :category_id WHERE id = :id");
-            $stmt->execute([':name' => $name, ':description' => $description, ':category_id' => $category_id, ':id' => $id]);
+            $stmt = $pdo->prepare("UPDATE products SET name = :name, description = :description, category_id = :category_id, subcategory_id = :subcategory_id WHERE id = :id");
+            $stmt->execute([':name' => $name, ':description' => $description, ':category_id' => $category_id, ':subcategory_id' => $subcategory_id, ':id' => $id]);
             header("Location: ../dashboard.php?success=product_updated");
 
         } elseif ($action == 'delete') {

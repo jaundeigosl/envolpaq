@@ -8,9 +8,20 @@ check_auth();
 $stmt = $pdo->query("SELECT * FROM categories");
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch Products
-$stmt = $pdo->query("SELECT p.*, c.name as category_name FROM products p LEFT JOIN categories c ON p.category_id = c.id");
+// Fetch Subcategories
+$stmt = $pdo->query("SELECT s.*, c.name as category_name FROM subcategories s JOIN categories c ON s.category_id = c.id");
+$subcategories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Fetch Products (update query to include subcategory name)
+$stmt = $pdo->query("SELECT p.*, c.name as category_name, s.name as subcategory_name FROM products p LEFT JOIN categories c ON p.category_id = c.id LEFT JOIN subcategories s ON p.subcategory_id = s.id");
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Prepare Subcategories for JS (Grouped by Category ID)
+$subsByCat = [];
+foreach ($subcategories as $sub) {
+    $subsByCat[$sub['category_id']][] = $sub;
+}
+$subsJson = json_encode($subsByCat);
 ?>
 
 <!DOCTYPE html>
@@ -200,6 +211,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="sidebar">
         <h2>Envolpaq Admin</h2>
         <a href="#" onclick="showSection('categories')" class="nav-link active">Categorías</a>
+        <a href="#" onclick="showSection('subcategories')" class="nav-link">Subcategorías</a>
         <a href="#" onclick="showSection('products')" class="nav-link">Productos</a>
         <a href="logout.php" class="logout">Cerrar Sesión</a>
     </div>
@@ -239,7 +251,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="form-group" style="grid-column: span 2;">
                         <label>Imagen</label>
                         <input type="file" name="image" id="cat_image" accept="image/*">
-                        <small style="display:none;" id="current_image_msg">Deja vacío para mantener la actual.</small>
+                        <small style="display:none;" id="cat_current_image_msg">Deja vacío para mantener la
+                            actual.</small>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary" id="cat_btn_submit">Crear Categoría</button>
@@ -280,12 +293,85 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </table>
         </div>
 
+        <!-- SUBCATEGORIES SECTION -->
+        <div id="subcategories-section" class="section" style="display:none;">
+            <h3>Gestión de Subcategorías</h3>
+
+            <form action="actions/subcategory_actions.php" method="POST" id="subCategoryForm"
+                enctype="multipart/form-data">
+                <input type="hidden" name="action" id="sub_action" value="create">
+                <input type="hidden" name="id" id="sub_id">
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" name="name" id="sub_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría Padre</label>
+                        <select name="category_id" id="sub_cat_id" required>
+                            <option value="">Seleccionar Categoría...</option>
+                            <?php foreach ($categories as $cat): ?>
+                                <option value="<?php echo $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input type="text" name="description" id="sub_desc">
+                    </div>
+                    <div class="form-group">
+                        <label>Imagen</label>
+                        <input type="file" name="image" id="sub_image" accept="image/*">
+                        <small style="display:none;" id="sub_current_image_msg">Deja vacío para mantener la
+                            actual.</small>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" id="sub_btn_submit">Crear Subcategoría</button>
+                <button type="button" class="btn" onclick="resetSubForm()" style="display:none;"
+                    id="sub_btn_cancel">Cancelar Edición</button>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Categoría Padre</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($subcategories as $sub): ?>
+                        <tr>
+                            <td><?php echo $sub['id']; ?></td>
+                            <td><?php echo htmlspecialchars($sub['name']); ?></td>
+                            <td><?php echo htmlspecialchars($sub['category_name']); ?></td>
+                            <td><?php echo htmlspecialchars($sub['description']); ?></td>
+                            <td class="actions">
+                                <button class="btn btn-warning"
+                                    onclick="editSubCategory(<?php echo $sub['id']; ?>, '<?php echo addslashes($sub['name']); ?>', '<?php echo $sub['category_id']; ?>', '<?php echo addslashes($sub['description']); ?>')">Editar</button>
+
+                                <form action="actions/subcategory_actions.php" method="POST"
+                                    onsubmit="return confirm('¿Eliminar esta subcategoría?');">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="id" value="<?php echo $sub['id']; ?>">
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+
 
         <!-- PRODUCTS SECTION -->
         <div id="products-section" class="section" style="display:none;">
             <h3>Gestión de Productos</h3>
 
-            <!-- Product Form -->
             <form action="actions/product_actions.php" method="POST" id="productForm">
                 <input type="hidden" name="action" id="prod_action" value="create">
                 <input type="hidden" name="id" id="prod_id">
@@ -297,7 +383,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     <div class="form-group">
                         <label>Categoría</label>
-                        <select name="category_id" id="prod_cat" required>
+                        <select name="category_id" id="prod_cat" required onchange="updateSubcategories()">
                             <option value="">Seleccionar Categoría...</option>
                             <?php foreach ($categories as $cat): ?>
                                 <option value="<?php echo $cat['id']; ?>"><?php echo htmlspecialchars($cat['name']); ?>
@@ -305,7 +391,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="form-group" style="grid-column: span 2;">
+                    <div class="form-group">
+                        <label>Subcategoría (Opcional)</label>
+                        <select name="subcategory_id" id="prod_sub">
+                            <option value="">Ninguna</option>
+                            <!-- Options populated via JS -->
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>Descripción</label>
                         <textarea name="description" id="prod_desc" rows="2"></textarea>
                     </div>
@@ -315,13 +408,13 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     id="prod_btn_cancel">Cancelar Edición</button>
             </form>
 
-            <!-- Product List -->
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Categoría</th>
+                        <th>Subcategoría</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -331,9 +424,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $prod['id']; ?></td>
                             <td><?php echo htmlspecialchars($prod['name']); ?></td>
                             <td><?php echo htmlspecialchars($prod['category_name']); ?></td>
+                            <td><?php echo htmlspecialchars($prod['subcategory_name'] ?? '-'); ?></td>
                             <td class="actions">
                                 <button class="btn btn-warning"
-                                    onclick="editProduct(<?php echo $prod['id']; ?>, '<?php echo addslashes($prod['name']); ?>', '<?php echo $prod['category_id']; ?>', '<?php echo addslashes($prod['description']); ?>')">Editar</button>
+                                    onclick="editProduct(<?php echo $prod['id']; ?>, '<?php echo addslashes($prod['name']); ?>', '<?php echo $prod['category_id']; ?>', '<?php echo $prod['subcategory_id'] ?? ''; ?>', '<?php echo addslashes($prod['description']); ?>')">Editar</button>
 
                                 <form action="actions/product_actions.php" method="POST"
                                     onsubmit="return confirm('¿Eliminar este producto?');">
@@ -351,20 +445,25 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <script>
+        const subsByCat = <?php echo $subsJson ?: '{}'; ?>;
+
         // Navigation Logic
         function showSection(sectionName) {
             document.getElementById('categories-section').style.display = 'none';
+            document.getElementById('subcategories-section').style.display = 'none';
             document.getElementById('products-section').style.display = 'none';
 
             document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
 
-            if (sectionName === 'categories') {
-                document.getElementById('categories-section').style.display = 'block';
-                event.target.classList.add('active');
-            } else {
-                document.getElementById('products-section').style.display = 'block';
-                event.target.classList.add('active');
-            }
+            // Highlight current link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                if (link.getAttribute('onclick').includes(sectionName)) {
+                    link.classList.add('active');
+                }
+            });
+
+            document.getElementById(sectionName + '-section').style.display = 'block';
         }
 
         // Category Edit Logic
@@ -373,13 +472,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             document.getElementById('cat_id').value = id;
             document.getElementById('cat_name').value = name;
             document.getElementById('cat_desc').value = desc;
-
-            // Show helper text
-            document.getElementById('current_image_msg').style.display = 'block';
-
+            document.getElementById('cat_current_image_msg').style.display = 'block';
             document.getElementById('cat_btn_submit').innerText = 'Actualizar Categoría';
             document.getElementById('cat_btn_cancel').style.display = 'inline-block';
-
             window.scrollTo(0, 0);
         }
 
@@ -387,18 +482,63 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             document.getElementById('categoryForm').reset();
             document.getElementById('cat_action').value = 'create';
             document.getElementById('cat_id').value = '';
-            document.getElementById('current_image_msg').style.display = 'none';
+            document.getElementById('cat_current_image_msg').style.display = 'none';
             document.getElementById('cat_btn_submit').innerText = 'Crear Categoría';
             document.getElementById('cat_btn_cancel').style.display = 'none';
         }
 
-        // Product Edit Logic
-        function editProduct(id, name, catId, desc) {
+        // Subcategory Edit Logic
+        function editSubCategory(id, name, catId, desc) {
+            document.getElementById('sub_action').value = 'update';
+            document.getElementById('sub_id').value = id;
+            document.getElementById('sub_name').value = name;
+            document.getElementById('sub_cat_id').value = catId;
+            document.getElementById('sub_desc').value = desc;
+            document.getElementById('sub_current_image_msg').style.display = 'block';
+            document.getElementById('sub_btn_submit').innerText = 'Actualizar Subcategoría';
+            document.getElementById('sub_btn_cancel').style.display = 'inline-block';
+            window.scrollTo(0, 0);
+        }
+
+        function resetSubForm() {
+            document.getElementById('subCategoryForm').reset();
+            document.getElementById('sub_action').value = 'create';
+            document.getElementById('sub_id').value = '';
+            document.getElementById('sub_current_image_msg').style.display = 'none';
+            document.getElementById('sub_btn_submit').innerText = 'Crear Subcategoría';
+            document.getElementById('sub_btn_cancel').style.display = 'none';
+        }
+
+
+        // Product Logic
+        function updateSubcategories(selectedSubId = null) {
+            const catId = document.getElementById('prod_cat').value;
+            const subSelect = document.getElementById('prod_sub');
+
+            subSelect.innerHTML = '<option value="">Ninguna</option>'; // Reset
+
+            if (catId && subsByCat[catId]) {
+                subsByCat[catId].forEach(sub => {
+                    const option = document.createElement('option');
+                    option.value = sub.id;
+                    option.textContent = sub.name;
+                    if (selectedSubId && sub.id == selectedSubId) {
+                        option.selected = true;
+                    }
+                    subSelect.appendChild(option);
+                });
+            }
+        }
+
+        function editProduct(id, name, catId, subId, desc) {
             document.getElementById('prod_action').value = 'update';
             document.getElementById('prod_id').value = id;
             document.getElementById('prod_name').value = name;
             document.getElementById('prod_cat').value = catId;
             document.getElementById('prod_desc').value = desc;
+
+            // Trigger update of subcategories then set value
+            updateSubcategories(subId);
 
             document.getElementById('prod_btn_submit').innerText = 'Actualizar Producto';
             document.getElementById('prod_btn_cancel').style.display = 'inline-block';
@@ -410,6 +550,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             document.getElementById('productForm').reset();
             document.getElementById('prod_action').value = 'create';
             document.getElementById('prod_id').value = '';
+            document.getElementById('prod_sub').innerHTML = '<option value="">Ninguna</option>';
             document.getElementById('prod_btn_submit').innerText = 'Crear Producto';
             document.getElementById('prod_btn_cancel').style.display = 'none';
         }

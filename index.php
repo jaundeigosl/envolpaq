@@ -616,6 +616,8 @@ require_once __DIR__ . "/config.php";
             </div>
         </footer>
     </div>
+    <?php include __DIR__ . '/views/components/whatsapp_widget.php'; ?>
+
 </body>
 
 <script>

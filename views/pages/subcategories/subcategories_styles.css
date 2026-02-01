@@ -1,0 +1,26 @@
+/* views/pages/subcategories/subcategories_styles.css */
+
+.catalog-img-container {
+    height: 12rem;
+    /* h-48 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: white;
+}
+
+.catalog-img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .catalog-img-container img {
+    transform: scale(1.05);
+}
+
+#hero-subcategory {
+    color: black;
+}

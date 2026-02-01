@@ -16,12 +16,21 @@ CREATE TABLE `categories`(
     `description` TEXT
 );
 
-CREATE TABLE `products`(
+CREATE TABLE `subcategories`(
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR (100) NOT NULL,
+    `name` VARCHAR(100) NOT NULL,
+    `image_url` VARCHAR(255),
     `description` TEXT,
     `category_id` INT NOT NULL,
     FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE CASCADE
 );
 
-
+CREATE TABLE `products`(
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR (100) NOT NULL,
+    `description` TEXT,
+    `category_id` INT NOT NULL,
+    `subcategory_id` INT DEFAULT NULL,
+    FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories`(`id`) ON DELETE SET NULL
+);
