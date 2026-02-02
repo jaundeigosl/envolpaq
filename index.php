@@ -530,7 +530,24 @@ require_once __DIR__ . "/config.php";
                         <div>
                             <div class="formulario rounded-lg border bg-card text-card-foreground">
                                 <div class="p-6">
-                                    <form class="space-y-6">
+                                    <?php if (isset($_GET['mail_status'])): ?>
+                                        <?php if ($_GET['mail_status'] == 'success'): ?>
+                                            <div class="mb-6 p-4 rounded-md bg-green-50 border border-green-200 text-green-700 flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                </svg>
+                                                <span>Mensaje enviado con éxito. Nos pondremos en contacto pronto.</span>
+                                            </div>
+                                        <?php elseif ($_GET['mail_status'] == 'error'): ?>
+                                            <div class="mb-6 p-4 rounded-md bg-red-50 border border-red-200 text-red-700 flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                </svg>
+                                                <span>Error al enviar el mensaje. Por favor intenta más tarde.</span>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                    <form class="space-y-6" action="controllers/send_email.php" method="POST">
                                         <div class="space-y-2"><label
                                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                                 for="contact-name">Nombre Completo</label><input

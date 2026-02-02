@@ -43,7 +43,7 @@
                     Selecciona un número para iniciar el chat:
                 </p>
 
-                <a href="https://wa.me/1234567890" target="_blank"
+                <a href="https://wa.me/+524442241903" target="_blank"
                     class="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-green-500 hover:bg-green-50 transition-all group"
                     style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background-color: white; border: 1px solid #e5e7eb; border-radius: 0.75rem; text-decoration: none; color: inherit; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
                     <div class="bg-green-100 p-2 rounded-full group-hover:bg-green-200 transition-colors"
@@ -56,13 +56,12 @@
                     </div>
                     <div>
                         <span class="block font-bold text-gray-800"
-                            style="display: block; font-weight: bold; color: #1f2937;">Ventas y Atención</span>
-                        <span class="text-sm text-gray-500" style="font-size: 0.875rem; color: #6b7280;">Whatsapp
-                            1</span>
+                            style="display: block; font-weight: bold; color: #1f2937;">Atención al Cliente y Ventas</span>
+                        <span class="text-sm text-gray-500" style="font-size: 0.875rem; color: #6b7280;">Whatsapp 1</span>
                     </div>
                 </a>
 
-                <a href="https://wa.me/0987654321" target="_blank"
+                <a href="https://wa.me/+524444206824" target="_blank"
                     class="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-green-500 hover:bg-green-50 transition-all group"
                     style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background-color: white; border: 1px solid #e5e7eb; border-radius: 0.75rem; text-decoration: none; color: inherit; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
                     <div class="bg-green-100 p-2 rounded-full group-hover:bg-green-200 transition-colors"
@@ -75,7 +74,7 @@
                     </div>
                     <div>
                         <span class="block font-bold text-gray-800"
-                            style="display: block; font-weight: bold; color: #1f2937;">Soporte Técnico</span>
+                            style="display: block; font-weight: bold; color: #1f2937;">Atención al Cliente y Ventas</span>
                         <span class="text-sm text-gray-500" style="font-size: 0.875rem; color: #6b7280;">Whatsapp
                             2</span>
                     </div>
