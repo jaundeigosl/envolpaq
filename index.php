@@ -22,9 +22,12 @@ require_once __DIR__ . "/config.php";
 </head>
 
 <body class="font-body antialiased">
+
+
     <div class="flex flex-col min-h-screen">
-        <header class="sticky top-0 z-50 w-full border-b border-primary/20 bg-primary text-primary-foreground">
-            <div class="container header-container flex h-14 items-center">
+        <header
+            class="sticky top-0 z-[100] w-full border-b border-primary/20 bg-primary text-primary-foreground transition-all duration-300">
+            <div class="container header-container flex h-14 items-center justify-between">
                 <a class="mr-6 flex items-center space-x-2" href="<?php echo BASE_URL ?>index.php">
                     <img id="logo" alt="Logo Envolpaq" loading="lazy" decoding="async" data-nimg="1"
                         src="<?php echo BASE_URL ?>public/imagenes/envolpaq_logo.png" />
@@ -60,21 +63,22 @@ require_once __DIR__ . "/config.php";
 
             <!-- Mobile Menu (Hidden by default) -->
             <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <div class="px-4 py-6 flex flex-col gap-6 text-center">
                     <a href="<?php echo BASE_URL ?>index.php"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Inicio</a>
                     <a href="#about"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Quiénes
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Quiénes
                         Somos</a>
                     <a href="#services"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Servicios</a>
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Servicios</a>
                     <a href="#whyus"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Por Qué
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Por
+                        Qué
                         Elegirnos</a>
                     <a href="<?php echo BASE_URL ?>controllers/controller_category.php"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Catálogo</a>
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Catálogo</a>
                     <a href="#contact"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Contacto</a>
                 </div>
             </div>
         </header>
@@ -108,24 +112,29 @@ require_once __DIR__ . "/config.php";
 
             <section id="about" class="py-16 md:py-24 bg-background" data-aos="fade-up">
                 <div class="container">
-                    <div class="grid lg:grid-cols-1 gap-12 items-center mb-12">
-                        <div class="second-text text-left" data-aos="fade-right" data-aos-delay="100">
-                            <h2 class="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">¿ Quiénes Somos ?
+                    <div class="grid lg:grid-cols-1 gap-6 lg:gap-12 items-center mb-12">
+                        <div class="second-text text-center" data-aos="fade-right" data-aos-delay="100">
+                            <h2 class="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">¿ Quiénes
+                                Somos ?
                             </h2>
-                            <div id="about-content">
-                                <p class="introduction mt-4 md:text-lg text-muted-foreground">
-                                    Somos Envolpaq, una empresa ubicada en San Luis Potosí, dedicada a brindar
-                                    soluciones
-                                    integrales de embalaje y empaque para empresas, minoristas y logística. Desde
-                                    nuestro
-                                    inicio, nos hemos enfocado en calidad, asesoría y una atención personalizada para
-                                    ayudarte a
-                                    empaquetar, enviar y presentar mejor tus productos.
-                                </p>
-                                <div class="relative h-full" data-aos="fade-left" data-aos-delay="200">
+                            <div id="about-content" class="flex flex-col md:flex-row gap-8 items-center">
+                                <div class="w-full md:w-1/2">
+                                    <p
+                                        class="introduction mt-4 md:text-lg text-muted-foreground text-center md:text-left">
+                                        Somos Envolpaq, una empresa ubicada en San Luis Potosí, dedicada a brindar
+                                        soluciones
+                                        integrales de embalaje y empaque para empresas, minoristas y logística. Desde
+                                        nuestro
+                                        inicio, nos hemos enfocado en calidad, asesoría y una atención personalizada
+                                        para
+                                        ayudarte a
+                                        empaquetar, enviar y presentar mejor tus productos.
+                                    </p>
+                                </div>
+                                <div class="relative h-full w-full md:w-1/2" data-aos="fade-left" data-aos-delay="200">
                                     <img src="<?php echo BASE_URL ?>public/imagenes/high-angle-man-arranging-delivery-packages-scaled.jpg"
                                         alt="Almacén y Logística Envolpaq"
-                                        class="rounded-xl shadow-lg object-cover w-full h-[300px] lg:h-full transform hover:scale-[1.02] transition-transform duration-500">
+                                        class="rounded-xl shadow-lg object-cover w-full h-[300px] md:h-auto transform hover:scale-[1.02] transition-transform duration-500">
                                 </div>
                             </div>
                         </div>
@@ -140,8 +149,10 @@ require_once __DIR__ . "/config.php";
                                 </div>
                             </div>
                             <div class="valores p-6 pt-0">
-                                <p class="text-muted-foreground">Proveer empaques, materiales de embalaje y soluciones
-                                    logísticas con estándares de calidad, entregas confiables y asesoría dedicada, para
+                                <p class="text-muted-foreground">Proveer empaques, materiales de embalaje y
+                                    soluciones
+                                    logísticas con estándares de calidad, entregas confiables y asesoría dedicada,
+                                    para
                                     que cada producto llegue en óptimas condiciones al cliente final.</p>
                             </div>
                         </div>
@@ -155,8 +166,10 @@ require_once __DIR__ . "/config.php";
                             </div>
                             <div class="valores p-6 pt-0">
                                 <p class="text-muted-foreground">Ser reconocidos en la región como el proveedor de
-                                    referencia en embalaje, empaque y soluciones logísticas — por la calidad de nuestros
-                                    productos, la eficiencia de nuestros servicios y la cercanía con nuestros clientes.
+                                    referencia en embalaje, empaque y soluciones logísticas — por la calidad de
+                                    nuestros
+                                    productos, la eficiencia de nuestros servicios y la cercanía con nuestros
+                                    clientes.
                                 </p>
                             </div>
                         </div>
@@ -182,7 +195,8 @@ require_once __DIR__ . "/config.php";
                                             </path>
                                         </svg>
                                         <div><span class="font-semibold">Calidad:</span><span
-                                                class="text-muted-foreground ml-1">Productos resistentes que protegen
+                                                class="text-muted-foreground ml-1">Productos resistentes que
+                                                protegen
                                                 tus envíos.</span></div>
                                     </li>
                                     <li class="valores flex items-start" data-aos="fade-left" data-aos-delay="500">
@@ -197,7 +211,8 @@ require_once __DIR__ . "/config.php";
                                             </path>
                                         </svg>
                                         <div><span class="font-semibold">Confianza:</span><span
-                                                class="text-muted-foreground ml-1">Relación transparente con nuestros
+                                                class="text-muted-foreground ml-1">Relación transparente con
+                                                nuestros
                                                 clientes.</span></div>
                                     </li>
                                     <li class="valores flex items-start" data-aos="fade-left" data-aos-delay="600">
@@ -242,7 +257,8 @@ require_once __DIR__ . "/config.php";
                                             </path>
                                         </svg>
                                         <div><span class="font-semibold">Responsabilidad:</span><span
-                                                class="text-muted-foreground ml-1">Seguridad en cada envío y cuidado del
+                                                class="text-muted-foreground ml-1">Seguridad en cada envío y cuidado
+                                                del
                                                 producto.</span></div>
                                     </li>
                                 </ul>
@@ -373,101 +389,135 @@ require_once __DIR__ . "/config.php";
             <section id="whyus" class="py-16 md:py-24 bg-background" data-aos="fade-up">
                 <div class="bg-effect-1">
                 </div>
-                <div class="container max-w-6xl mx-auto">
-                    <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="container px-4 lg:px-6 max-w-6xl mx-auto">
+                    <div class="text-center mb-8 lg:mb-12" data-aos="fade-up" data-aos-delay="100">
                         <h2 class="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">¿Por qué elegir
                             Envolpaq?</h2>
-                        <p class="introduction mt-4 text-muted-foreground md:text-lg">Ofrecemos tranquilidad, respaldo
+                        <p class="introduction mt-4 text-muted-foreground md:text-lg text-center">Ofrecemos
+                            tranquilidad, respaldo
                             local y soluciones pensadas para tu negocio.</p>
                     </div>
-                    <div class="mt-12 grid lg:grid-cols-2 gap-12 items-start">
+
+                    <div id="whyus-container" class="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
                         <!-- Left Column: Values & Text -->
-                        <div class="space-y-8">
-                            <div id="valores" class="space-y-4">
-                                <div class="valores flex items-center" data-aos="fade-up" data-aos-delay="100">
-                                    <svg class="text-primary flex-shrink-0" stroke="currentColor" fill="currentColor"
-                                        stroke-width="0" viewBox="0 0 24 24" height="2em" width="2em"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z">
-                                        </path>
-                                        <path
-                                            d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z">
-                                        </path>
-                                    </svg>
-                                    <div class="ml-4"><span class="font-semibold text-lg">Amplio inventario y stock
-                                            local inmediato.</span></div>
+                        <div class="w-full md:w-1/2 flex flex-col gap-6 md:gap-8 order-1 md:order-none">
+                            <div id="valores" class="flex flex-col gap-6">
+
+                                <!-- Valor 1 -->
+                                <div class="flex items-start gap-6 text-left w-full" data-aos="fade-up"
+                                    data-aos-delay="100">
+                                    <div class="w-8 h-8 flex-shrink-0 mt-1">
+                                        <svg class="text-primary w-full h-full" width="32" height="32"
+                                            stroke="currentColor" fill="currentColor" stroke-width="0"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z">
+                                            </path>
+                                            <path
+                                                d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <span class="font-semibold text-lg leading-tight block break-words">Amplio
+                                            inventario y stock local inmediato.</span>
+                                    </div>
                                 </div>
-                                <div class="valores flex items-center" data-aos="fade-up" data-aos-delay="200">
-                                    <svg class="text-primary flex-shrink-0" stroke="currentColor" fill="currentColor"
-                                        stroke-width="0" viewBox="0 0 24 24" height="2em" width="2em"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z">
-                                        </path>
-                                        <path
-                                            d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z">
-                                        </path>
-                                    </svg>
-                                    <div class="ml-4"><span class="font-semibold text-lg">Asesoría profesional para
-                                            escoger el empaque adecuado.</span></div>
+
+                                <!-- Valor 2 -->
+                                <div class="flex items-start gap-6 text-left w-full" data-aos="fade-up"
+                                    data-aos-delay="200">
+                                    <div class="w-8 h-8 flex-shrink-0 mt-1">
+                                        <svg class="text-primary w-full h-full" width="32" height="32"
+                                            stroke="currentColor" fill="currentColor" stroke-width="0"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z">
+                                            </path>
+                                            <path
+                                                d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <span class="font-semibold text-lg leading-tight block break-words">Asesoría
+                                            profesional para escoger el empaque adecuado.</span>
+                                    </div>
                                 </div>
-                                <div class="valores flex items-center" data-aos="fade-up" data-aos-delay="300">
-                                    <svg class="text-primary flex-shrink-0" stroke="currentColor" fill="currentColor"
-                                        stroke-width="0" viewBox="0 0 24 24" height="2em" width="2em"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z">
-                                        </path>
-                                        <path
-                                            d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z">
-                                        </path>
-                                    </svg>
-                                    <div class="ml-4"><span class="font-semibold text-lg">Servicio cercano y entregas
-                                            ágiles en la zona de San Luis Potosí.</span></div>
+
+                                <!-- Valor 3 -->
+                                <div class="flex items-start gap-6 text-left w-full" data-aos="fade-up"
+                                    data-aos-delay="300">
+                                    <div class="w-8 h-8 flex-shrink-0 mt-1">
+                                        <svg class="text-primary w-full h-full" width="32" height="32"
+                                            stroke="currentColor" fill="currentColor" stroke-width="0"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z">
+                                            </path>
+                                            <path
+                                                d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <span class="font-semibold text-lg leading-tight block break-words">Servicio
+                                            cercano y entregas ágiles en la zona de San Luis Potosí.</span>
+                                    </div>
                                 </div>
-                                <div class="valores flex items-center" data-aos="fade-up" data-aos-delay="400">
-                                    <svg class="text-primary flex-shrink-0" stroke="currentColor" fill="currentColor"
-                                        stroke-width="0" viewBox="0 0 24 24" height="2em" width="2em"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z">
-                                        </path>
-                                        <path
-                                            d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z">
-                                        </path>
-                                    </svg>
-                                    <div class="ml-4"><span class="font-semibold text-lg">Soluciones creadas para
-                                            proteger tus productos y potenciar tu marca.</span></div>
+
+                                <!-- Valor 4 -->
+                                <div class="flex items-start gap-6 text-left w-full" data-aos="fade-up"
+                                    data-aos-delay="400">
+                                    <div class="w-8 h-8 flex-shrink-0 mt-1">
+                                        <svg class="text-primary w-full h-full" width="32" height="32"
+                                            stroke="currentColor" fill="currentColor" stroke-width="0"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z">
+                                            </path>
+                                            <path
+                                                d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <span class="font-semibold text-lg leading-tight block break-words">Soluciones
+                                            creadas para proteger tus productos y potenciar tu marca.</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div id="compromiso" class="rounded-xl border bg-card text-card-foreground shadow-md p-6"
-                                data-aos="fade-up" data-aos-delay="500">
-                                <h3 class="font-headline text-xl font-bold tracking-tighter mb-3">Compromiso con tu
-                                    negocio</h3>
-                                <p class="text-muted-foreground mb-4">
-                                    En Envolpaq creemos que la presentación, protección y logística de tus productos son
-                                    tan
-                                    importantes como su contenido. Por eso, nos dedicamos a ofrecer productos de
-                                    calidad,
-                                    óptimos tiempos de entrega y un servicio que entiende tus necesidades.
-                                </p>
-                                <p class="mt-4 text-sm text-primary/80">
-                                    <strong>Porque en Envolpaq no solo vendemos empaques: ofrecemos tranquilidad. Tu
-                                        producto merece llegar intacto. Tu marca merece un empaque que la respalde. Con
-                                        nosotros tienes respaldo local, atención experta y soluciones pensadas para tu
-                                        negocio.</strong>
-                                </p>
-                            </div>
+
                         </div>
 
                         <!-- Right Column: Image -->
-                        <div class="relative h-full min-h-[400px]" data-aos="fade-left" data-aos-delay="200">
+                        <div class="relative h-full min-h-[200px] md:min-h-[400px] w-full md:w-1/2 order-2 md:order-none"
+                            data-aos="fade-left" data-aos-delay="200">
                             <img src="<?php echo BASE_URL ?>public/imagenes/1900x1288-main-1024x694.jpg"
                                 alt="Experiencia y Calidad"
                                 class="rounded-2xl shadow-2xl object-cover w-full h-full transform transition-all hover:scale-[1.01]">
                         </div>
+                    </div>
+                    <div id="compromiso"
+                        class="mt-12 rounded-xl border bg-card text-card-foreground shadow-md p-6 text-center w-full max-w-4xl mx-auto"
+                        data-aos="fade-up" data-aos-delay="500">
+                        <h3 class="font-headline text-xl font-bold tracking-tighter mb-3">Compromiso con tu
+                            negocio</h3>
+                        <p class="text-muted-foreground mb-4 text-center">
+                            En Envolpaq creemos que la presentación, protección y logística de tus productos son
+                            tan
+                            importantes como su contenido. Por eso, nos dedicamos a ofrecer productos de
+                            calidad,
+                            óptimos tiempos de entrega y un servicio que entiende tus necesidades.
+                        </p>
+                        <p class="mt-4 text-sm text-primary/80 text-center">
+                            <br>
+                            <strong>Porque en Envolpaq no solo vendemos empaques: ofrecemos tranquilidad. Tu
+                                producto merece llegar intacto. Tu marca merece un empaque que la respalde. Con
+                                nosotros tienes respaldo local, atención experta y soluciones pensadas para tu
+                                negocio.</strong>
+                        </p>
                     </div>
                 </div>
                 <div class="bg-effect-2">

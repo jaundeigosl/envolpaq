@@ -26,8 +26,9 @@ if (isset($result)) {
 
 <body class="font-body antialiased">
     <div class="flex flex-col min-h-screen">
-        <header class="sticky top-0 z-50 w-full border-b border-primary/20 bg-primary text-primary-foreground">
-            <div class="container header-container flex h-14 items-center">
+        <header
+            class="sticky top-0 z-[100] w-full border-b border-primary/20 bg-primary text-primary-foreground transition-all duration-300">
+            <div class="container header-container flex h-14 items-center justify-between">
                 <a class="mr-6 flex items-center space-x-2" href="<?php echo BASE_URL ?>index.php">
                     <img id="logo" alt="Logo Envolpaq" loading="lazy" decoding="async" data-nimg="1"
                         src="<?php echo BASE_URL ?>public/imagenes/envolpaq_logo.png" />
@@ -63,21 +64,22 @@ if (isset($result)) {
 
             <!-- Mobile Menu (Hidden by default) -->
             <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <div class="px-4 py-6 flex flex-col gap-6 text-center">
                     <a href="<?php echo BASE_URL ?>index.php"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Inicio</a>
                     <a href="<?php echo BASE_URL ?>index.php#about"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Quiénes
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Quiénes
                         Somos</a>
                     <a href="<?php echo BASE_URL ?>index.php#services"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Servicios</a>
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Servicios</a>
                     <a href="<?php echo BASE_URL ?>index.php#whyus"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Por Qué
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Por
+                        Qué
                         Elegirnos</a>
                     <a href="<?php echo BASE_URL ?>controllers/controller_category.php"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Catálogo</a>
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Catálogo</a>
                     <a href="<?php echo BASE_URL ?>index.php#contact"
-                        class="text-black hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+                        class="text-black hover:bg-gray-100 block px-3 py-3 rounded-md text-lg font-medium transition-colors">Contacto</a>
                 </div>
             </div>
         </header>

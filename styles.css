@@ -42,6 +42,8 @@ body {
     /* Color de texto oscuro por defecto */
     background-color: var(--color-background);
     line-height: 1.6;
+    width: 100%;
+    max-width: 100%;
 }
 
 h1 {
@@ -586,6 +588,14 @@ textarea:focus-visible {
         /* Aplica la cuadrícula de dos columnas */
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    #about-content {
+        flex-direction: row;
+    }
+
+    #whyus-container{
+        flex-direction: row;
+    }
 }
 
 .grid {
@@ -711,6 +721,15 @@ footer p {
     color: white;
 }
 
+#whyus img {
+    width: 350px;
+    height: 350px;
+    border-radius: 1rem;
+    border: white solid 3px;
+    margin-top: 50px;
+}
+
+
 /* =========================================
    7. AJUSTES ESPECÍFICOS PARA MÓVIL (Menos de 768px)
    ========================================= */
@@ -737,6 +756,7 @@ footer p {
         padding-right: 20px;
     }
 
+    /* Forzar colapso de grids y flex que no tengan la clase específica */
     /* Forzar colapso de grids y flex que no tengan la clase específica */
     .grid {
         grid-template-columns: 1fr !important;
@@ -776,6 +796,43 @@ footer p {
         width: 80px;
     }
 
+    .header-container {
+        gap: 1rem !important;
+        /* Reducir gap masivo de 100px */
+    }
+
+    h1 {
+        font-size: 2.2em !important;
+    }
+
+    h2 {
+        font-size: 1.8em !important;
+    }
+
+    h3 {
+        font-size: 1.4em !important;
+    }
+
+    p,
+    .introduction {
+        font-size: 1em !important;
+    }
+
+    .valores {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .valores div {
+        overflow-wrap: break-word;
+        /* Ensure long words don't overflow */
+        word-break: break-word;
+    }
+
+    #whyus img {
+        margin-left: 0px;
+    }
+
 }
 
 #mobile-menu-btn {
@@ -783,10 +840,7 @@ footer p {
     height: 30px;
 }
 
-#mobile-menu div {
-    display: flex;
-    justify-content: space-around;
-}
+
 
 #mobile-menu a {
     font-weight: 600;
@@ -795,6 +849,7 @@ footer p {
 .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -803,44 +858,46 @@ footer p {
     object-fit: contain;
 }
 
-#about-content{
+#about-content {
     display: flex;
-    gap:80px;
+    gap: 80px;
     align-items: center;
     justify-content: center;
     margin-bottom: 60px;
 }
 
-#about h2{
+#about h2 {
     text-align: center;
     margin-bottom: 40px;
 }
 
 
-#about-content p{
-    color:white;
+#about-content p {
+    color: white;
 }
 
-#about-content img{
+#about-content img {
     width: 350px;
     height: 350px;
     border-radius: 1rem;
     border: white solid 3px;
 }
 
-#valores{
+#valores {
     margin-bottom: 30px;
+    gap: 10px
 }
 
-#compromiso{
+#compromiso {
     border-radius: 1rem;
+
 }
 
-#whyus img{
-    width: 350px;
-    height: 350px;
-    border-radius: 1rem;
-    border: white solid 3px;
-    margin-top: 50px;
-    margin-left: 150px;
+#compromiso p {
+    text-align: justify;
+
+}
+
+#whyus .container p {
+    margin-bottom: 20px;
 }
