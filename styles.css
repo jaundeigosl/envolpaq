@@ -606,6 +606,10 @@ textarea:focus-visible {
          width: 350px;
         height: 350px;
     }
+
+    #valores{
+          margin-left: 100px;
+    }
     
 }
 
