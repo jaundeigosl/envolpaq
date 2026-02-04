@@ -131,10 +131,18 @@ require_once __DIR__ . "/config.php";
                                         empaquetar, enviar y presentar mejor tus productos.
                                     </p>
                                 </div>
-                                <div class="relative h-full w-full md:w-1/2" data-aos="fade-left" data-aos-delay="200">
-                                    <img src="<?php echo BASE_URL ?>public/imagenes/high-angle-man-arranging-delivery-packages-scaled.jpg"
-                                        alt="Almacén y Logística Envolpaq"
-                                        class="rounded-xl shadow-lg object-cover w-full h-[300px] md:h-auto transform hover:scale-[1.02] transition-transform duration-500">
+                                <div class="relative h-full w-full md:w-1/2 products-images" data-aos="fade-left" data-aos-delay="200">
+                                    <div class="image-stack">
+                                        <div class="stacked-image main-image">
+                                            <img src="<?php echo BASE_URL ?>public/imagenes/ChatGPT Image 3 feb 2026, 01_27_28 p.m..png"
+                                                alt="Almacén y Logística Envolpaq"
+                                                class="rounded-xl shadow-lg object-cover w-full h-[300px] md:h-auto">
+                                        </div>
+                                        <div class="stacked-image back-image image-1">
+                                            <img src="<?php echo BASE_URL ?>public/imagenes/ChatGPT Image 3 feb 2026, 01_27_32 p.m..png"
+                                                alt="Imagen Decorativa">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -492,11 +500,18 @@ require_once __DIR__ . "/config.php";
                         </div>
 
                         <!-- Right Column: Image -->
-                        <div class="relative h-full min-h-[200px] md:min-h-[400px] w-full md:w-1/2 order-2 md:order-none"
+                        <div class="relative h-full min-h-[200px] md:min-h-[400px] w-full md:w-1/2 order-2 md:order-none products-images"
                             data-aos="fade-left" data-aos-delay="200">
-                            <img src="<?php echo BASE_URL ?>public/imagenes/1900x1288-main-1024x694.jpg"
-                                alt="Experiencia y Calidad"
-                                class="rounded-2xl shadow-2xl object-cover w-full h-full transform transition-all hover:scale-[1.01]">
+                            <div class="image-stack">
+                                <div class="stacked-image main-image">
+                                    <img src="<?php echo BASE_URL ?>public/imagenes/ChatGPT Image 3 feb 2026, 01_27_35 p.m..png"
+                                        alt="Experiencia y Calidad">
+                                </div>
+                                <div class="stacked-image back-image image-1">
+                                    <img src="<?php echo BASE_URL ?>public/imagenes/high-angle-man-arranging-delivery-packages-scaled.jpg"
+                                        alt="Experiencia y Calidad">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div id="compromiso"
