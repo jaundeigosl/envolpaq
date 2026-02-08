@@ -598,8 +598,8 @@ textarea:focus-visible {
     }
 
     #about-content img {
-        width: 350px;
-        height: 350px;
+        width: 17vw;
+        height: 17vw;
     }
 
     #whyus img {
@@ -609,6 +609,15 @@ textarea:focus-visible {
 
     #valores{
           margin-left: 100px;
+    }
+
+    #valores-container{
+        width: 85vw;
+    }
+
+    #about-content p{
+        text-align: justify;
+        margin-right:5vw;
     }
     
 }

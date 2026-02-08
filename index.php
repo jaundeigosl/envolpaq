@@ -408,7 +408,7 @@ require_once __DIR__ . "/config.php";
 
                     <div id="whyus-container" class="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
                         <!-- Left Column: Values & Text -->
-                        <div class="w-full md:w-1/2 flex flex-col gap-6 md:gap-8 order-1 md:order-none">
+                        <div id="valores-container" class="w-full md:w-1/2 flex flex-col gap-6 md:gap-8 order-1 md:order-none">
                             <div id="valores" class="flex flex-col gap-6">
 
                                 <!-- Valor 1 -->
